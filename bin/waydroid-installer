@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo pacman -S waydroid
+sudo waydroid init -s GAPPS
+sudo systemctl start waydroid-container
+waydroid show-full-ui

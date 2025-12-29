@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="$HOME/.config/walker/scripts:$PATH"
+export PATH="$HOME/.local/share/HybridOS/bin:$PATH"
 
 # Set to true when going directly to a submenu, so we can exit directly
 BACK_TO_EXIT=false
@@ -80,27 +80,46 @@ show_style_menu() {
 
 show_setup_menu() {
   case $(menu "SETUP SETTINGS" "  Audio\n  Wifi\n󰂯  Bluetooth\n󱐋  Power Profile\n󰍹  Monitors") in
-  *Audio*) ;;
-  *Wifi*) ;;
-  *Bluetooth*) ;;
-  *Power*) ;;
+  *Audio*) launch-or-focus-tui wiremix ;;
+  *Wifi*) launch-wifi ;;
+  *Bluetooth*) launch-bluetooth ;;
+  *Power*) show_setup_power_menu ;;
   *Monitors*) ;;
   *) show_main_menu ;;
   esac
 }
 
+show_setup_power_menu() {
+  profile=$(menu "Power Profile" "$(powerprofile-list)" "" "$(powerprofilesctl get)")
+
+  if [[ "$profile" == "CNCLD" || -z "$profile" ]]; then
+    back_to show_setup_menu
+  else
+    powerprofilesctl set "$profile"
+  fi
+}
+
+# TODO TEST DISCORD INSTALL/REMOVE
 show_install_menu() {
-  case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming") in
+  case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming\n☕ Discord\n☯ OBS\n☯ LocalSend\n☯ Waydroid") in
   *Browser*) show_browser_install_menu ;;
   *Gaming*) show_gaming_install_menu ;;
+  *Discord*) yay_install_nosudo "vesktop" ;;
+  *OBS*) pac_add "obs-studio" ;;
+  *Waydroid*) pac_add "waydroid" ;;
+  *LocalSend*) yay_install_nosudo "localsend-bin" ;;
   *) show_main_menu ;;
   esac
 }
 
 show_remove_menu() {
-  case $(menu "REMOVE MENU" "☯ Browser\n♛ Gaming") in
+  case $(menu "REMOVE MENU" "☯ Browser\n♛ Gaming\n☕ Discord\n☯ OBS\n☯ LocalSend\n☯ Waydroid") in
   *Browser*) show_browser_remove_menu ;;
   *Gaming*) show_gaming_remove_menu ;;
+  *Discord*) yay_remove "vesktop" ;;
+  *OBS*) pac_remove "obs-studio" ;;
+  *Waydroid*) pac_remove "waydroid" ;;
+  *LocalSend*) yay_remove "localsend-bin" ;;
   *) show_main_menu ;;
   esac
 }
