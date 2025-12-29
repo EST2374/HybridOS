@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BG_DIR="$HOME/Pictures"
+BG_DIR="$HOME/.local/share/HybridOS/wallpapers"
 
 # Find only images, format them, and pipe into Walker's dmenu mode
 selected=$(find "$BG_DIR" -maxdepth 1 -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \) | sort | while read -r path; do

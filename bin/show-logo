@@ -2,6 +2,6 @@
 
 clear
 echo -e "\033[32m"
-cat <~/.config/walker/scripts/logo.txt
+cat <~/.local/share/HybridOS/logo.txt
 echo -e "\033[0m"
 echo

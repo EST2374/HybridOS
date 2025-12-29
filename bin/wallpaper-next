@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BACKGROUNDS_DIR="$HOME/Pictures"
+BACKGROUNDS_DIR="$HOME/.local/share/HybridOS/wallpapers"
 # A simple text file to remember the last image used
 STATE_FILE="$HOME/.cache/current_wallpaper.txt"
 
