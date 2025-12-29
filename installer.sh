@@ -9,7 +9,7 @@ sudo pacman -S --needed --noconfirm \
   hyprland \
   waybar \
   alacritty \
-  dolphin \
+  nautilus \
   flameshot \
   networkmanager \
   bluez \
@@ -19,7 +19,12 @@ sudo pacman -S --needed --noconfirm \
   base-devel \
   flatpak \
   go \
-  swww
+  swww \
+  flatpak \
+  gum \
+  nmgui-bin \
+  uwsm \
+  bluetui
 
 # If yay isnt installed
 if ! command -v yay &>/dev/null; then
