@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# TODO
+# NOT FINISHED
 sudo pacman -S waydroid
 sudo waydroid init -s GAPPS
 sudo systemctl start waydroid-container

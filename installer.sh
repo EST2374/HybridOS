@@ -35,7 +35,11 @@ sudo pacman -S --needed --noconfirm \
   wireplumber \
   pavucontrol \
   ttf-font-awesome \
-  ttf-nerd-fonts-symbols-common
+  ttf-nerd-fonts-symbols-common \
+  sddm \
+  qt6-svg \
+  qt6-virtualkeyboard \
+  qt6-multimedia-ffmpeg
 
 # If yay isnt installed
 if ! command -v yay &>/dev/null; then

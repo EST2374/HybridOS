@@ -71,9 +71,11 @@ install_browser() {
 
 # TODO Styles
 show_style_menu() {
-  case $(menu "STYLE SETTINGS" "󰸌 Theme\n󰃉 Wallpaper\n󰍛 Fonts\n󰔎 Night Light") in
-  *Theme*) echo "Changing theme..." ;;
+  case $(menu "STYLE SETTINGS" "󰸌 Theme\n󰃉 Wallpaper\n󰍛 Fonts\n󰔎 LoginScreen") in
+  *Theme*) ;;
   *Wallpaper*) wallpaper-set ;;
+  *Fonts*) ;;
+  *LoginScreen*) sddm-set ;;
   *) show_main_menu ;;
   esac
 }

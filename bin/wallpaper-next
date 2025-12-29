@@ -1,7 +1,6 @@
 #!/bin/bash
 
 BACKGROUNDS_DIR="$HOME/.local/share/HybridOS/wallpapers"
-# A simple text file to remember the last image used
 STATE_FILE="$HOME/.cache/current_wallpaper.txt"
 
 mapfile -d '' -t BACKGROUNDS < <(find -L "$BACKGROUNDS_DIR" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.webp" \) -print0 | sort -z)
@@ -12,14 +11,12 @@ if [[ $TOTAL -eq 0 ]]; then
   exit 1
 fi
 
-# Get the current background path from our text file
 if [[ -f "$STATE_FILE" ]]; then
   CURRENT_BACKGROUND=$(cat "$STATE_FILE")
 else
   CURRENT_BACKGROUND=""
 fi
 
-# Find the index of the current background
 INDEX=-1
 for i in "${!BACKGROUNDS[@]}"; do
   if [[ "${BACKGROUNDS[$i]}" == "$CURRENT_BACKGROUND" ]]; then
@@ -28,12 +25,9 @@ for i in "${!BACKGROUNDS[@]}"; do
   fi
 done
 
-# Calculate the next index
 NEXT_INDEX=$(((INDEX + 1) % TOTAL))
 NEW_BACKGROUND="${BACKGROUNDS[$NEXT_INDEX]}"
 
-# Save the new path to our text file (no symlinks!)
 echo "$NEW_BACKGROUND" >"$STATE_FILE"
 
-# Apply the wallpaper
 swww img "$NEW_BACKGROUND" --transition-type wipe --transition-angle 30 --transition-duration 1.5
