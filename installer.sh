@@ -7,24 +7,35 @@ sudo pacman -Syu --noconfirm
 echo "Installing core dependencies..."
 sudo pacman -S --needed --noconfirm \
   hyprland \
+  uwsm \
   waybar \
   alacritty \
   nautilus \
+  gvfs \
   flameshot \
+  grim \
+  slurp \
   networkmanager \
   bluez \
   bluez-utils \
+  bluetui \
   power-profiles-daemon \
   git \
   base-devel \
   flatpak \
   go \
   swww \
-  flatpak \
   gum \
-  nmgui-bin \
-  uwsm \
-  bluetui
+  xdg-desktop-portal-hyprland \
+  xdg-desktop-portal-gtk \
+  polkit-kde-agent \
+  dunst \
+  pipewire \
+  pipewire-pulse \
+  wireplumber \
+  pavucontrol \
+  ttf-font-awesome \
+  ttf-nerd-fonts-symbols-common
 
 # If yay isnt installed
 if ! command -v yay &>/dev/null; then
@@ -38,7 +49,9 @@ fi
 
 # AUR Stuff
 echo "Installing AUR packages..."
-yay -S --noconfirm walker-bin
+yay -S --noconfirm \
+  walker-bin \
+  nmgui-bin
 
 # Copy Repo to local share
 echo "Setting up HybridOS directories..."
