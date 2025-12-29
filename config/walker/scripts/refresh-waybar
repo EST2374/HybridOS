@@ -1,0 +1,5 @@
+#!/bin/bash
+
+refresh-config waybar/config.jsonc
+refresh-config waybar/style.css
+restart-waybar

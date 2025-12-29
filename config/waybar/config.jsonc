@@ -1,0 +1,74 @@
+{
+    "layer": "top",
+    "position": "top",
+    "all-outputs": true,
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "modules-left": ["custom/arch", "custom/player"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["pulseaudio#microphone", "custom/nightmode", "network", "clock"],
+
+    "custom/arch": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "walker-menu"
+    },
+
+    "custom/player": {
+        "exec": "playerctl metadata --format '{\"text\": \"{{title}}\", \"alt\": \"{{status}}\", \"tooltip\": \"{{artist}} - {{album}}\"}' --follow",
+        "return-type": "json",
+        "format": "{icon} {text}", 
+        "format-icons": {
+            "Playing": "<span>󰎈</span>",
+            "Paused": "<span>󰏤</span>"
+        },
+        "max-length": 35,
+        "on-click": "playerctl play-pause",
+        // Lautstärke mit dem Mausrad steuern:
+        "on-scroll-up": "pamixer -i 5", 
+        "on-scroll-down": "pamixer -d 5",
+        // Wenn du Songs überspringen willst, leg das auf Rechtsklick/Mittelklick:
+        "on-click-right": "playerctl next",
+        "on-click-middle": "playerctl previous"
+    },
+    
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "persistent-workspaces": {
+            "*": 5 
+        },
+        "format-icons": {
+            "default": ""
+        }
+    },
+    
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "", // Ein durchgestrichenes Mikrofon
+        "on-click": "pamixer --default-source -t",
+        "tooltip": true,
+        "tooltip-format-source": "Mikrofon aktiv",
+        "tooltip-format-source-muted": "Mikrofon STUMM"
+    },
+
+    "custom/nightmode": {
+        "format": "󰛨",
+        "on-click": "~/.local/share/scripts/toggle_night.sh",
+        "tooltip": false
+    },
+
+    "network": {
+        "format-wifi": " {bandwidthDownBytes}",
+        "format-ethernet": " {bandwidthDownBytes}",
+        "interval": 2,
+        "tooltip-format": "{essid}"
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    }
+}

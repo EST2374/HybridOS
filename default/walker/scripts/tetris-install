@@ -1,0 +1,25 @@
+#!/bin/bash
+
+BINARY_NAME=tetris
+ICON_URL="https://www.startpage.com/av/proxy-image?piurl=http%3A%2F%2Fwww.pngmart.com%2Ffiles%2F13%2FTetris-Logo-PNG-Image.png&sp=1766953517T2ae9fcb1357c9ed576f176fb41ba01125c3edd4881810034346e5067662c8b02"
+yay_nosudo-add "tetris-tui-git"
+
+ICON_DIR="$HOME/.local/share/icons"
+mkdir -p "$ICON_DIR"
+ICON_PATH="$ICON_DIR/$BINARY_NAME.png"
+curl -L "$ICON_URL" -o "$ICON_PATH"
+
+APP_DIR="$HOME/.local/share/applications"
+mkdir -p "$APP_DIR"
+touch ~/.local/share/applications/tetris.desktop
+
+cat <<EOF >"$APP_DIR/$BINARY_NAME.desktop"
+[Desktop Entry]
+Type=Application
+Name=$BINARY_NAME
+Exec=$BINARY_NAME
+Icon=$ICON_PATH
+Terminal=true
+Categories=Game;Utility;
+EOF
+chmod +x ~/.local/share/applications/tetris.desktop

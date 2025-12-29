@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <flatpak-app-id>"
+    echo "Example: $0 org.gnome.Aisleriot"
+    exit 1
+fi
+
+APP_ID=$1
+
+echo "Searching for $APP_ID..."
+
+flatpak install flathub "$APP_ID" -y
+
+if [ $? -eq 0 ]; then
+    echo "Successfully installed $APP_ID"
+else
+    echo "Error: Failed to install $APP_ID. Make sure the ID is correct."
+fi

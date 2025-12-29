@@ -1,0 +1,15 @@
+#!/bin/bash
+
+BG_DIR="$HOME/Pictures"
+
+# Find only images, format them, and pipe into Walker's dmenu mode
+selected=$(find "$BG_DIR" -maxdepth 1 -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \) | sort | while read -r path; do
+  echo "$(basename "${path%.*}" | sed -E 's/(^|-)([a-z])/\1\u\2/g; s/-/ /g')"
+done | walker --dmenu -p "Select Background")
+
+# Logic to apply the selected background
+if [ -n "$selected" ]; then
+  filename=$(echo "$selected" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+  full_path=$(find "$BG_DIR" -name "$filename.*" | head -n 1)
+  swww img "$full_path" --transition-type wipe --transition-angle 30 --transition-duration 1.5
+fi

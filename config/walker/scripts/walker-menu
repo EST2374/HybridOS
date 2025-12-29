@@ -1,0 +1,243 @@
+#!/bin/bash
+
+export PATH="$HOME/.config/walker/scripts:$PATH"
+
+# Set to true when going directly to a submenu, so we can exit directly
+BACK_TO_EXIT=false
+
+back_to() {
+  local parent_menu="$1"
+
+  if [[ "$BACK_TO_EXIT" == "true" ]]; then
+    exit 0
+  elif [[ -n "$parent_menu" ]]; then
+    "$parent_menu"
+  else
+    show_main_menu
+  fi
+}
+
+# Helping functions
+present_terminal() {
+  launch-floating-terminal-with-presentation $1
+}
+
+# Only for Minecraft for now
+yay_install_and_launch() {
+  present_terminal "echo 'Installing $1...'; yay -S --noconfirm $2 && setsid gtk-launch $3"
+}
+
+pac_add() {
+  present_terminal "pac-add $1"
+}
+
+pac_remove() {
+  present_terminal "pac-rem $1"
+}
+
+yay_install() {
+  present_terminal "yay-add $1"
+}
+
+yay_install_nosudo() {
+  present_terminal "yay_nosudo-add $1"
+}
+
+yay_remove() {
+  present_terminal "yay-rem $1"
+}
+
+flatpak_add() {
+  present_terminal "flatpak-add $1"
+}
+
+flatpak_remove() {
+  present_terminal "flatpak-remove $1"
+}
+
+tetris_install() {
+  present_terminal "tetris-install"
+}
+
+tetris_remove() {
+  present_terminal "tetris-remove $1"
+}
+
+install_browser() {
+  present_terminal "install-browser $1"
+}
+
+# SubMenues
+
+# TODO Styles
+show_style_menu() {
+  case $(menu "STYLE SETTINGS" "󰸌 Theme\n󰃉 Wallpaper\n󰍛 Fonts\n󰔎 Night Light") in
+  *Theme*) echo "Changing theme..." ;;
+  *Wallpaper*) wallpaper-set ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_setup_menu() {
+  case $(menu "SETUP SETTINGS" "  Audio\n  Wifi\n󰂯  Bluetooth\n󱐋  Power Profile\n󰍹  Monitors") in
+  *Audio*) ;;
+  *Wifi*) ;;
+  *Bluetooth*) ;;
+  *Power*) ;;
+  *Monitors*) ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_install_menu() {
+  case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming") in
+  *Browser*) show_browser_install_menu ;;
+  *Gaming*) show_gaming_install_menu ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_remove_menu() {
+  case $(menu "REMOVE MENU" "☯ Browser\n♛ Gaming") in
+  *Browser*) show_browser_remove_menu ;;
+  *Gaming*) show_gaming_remove_menu ;;
+  *) show_main_menu ;;
+  esac
+}
+
+# Sub-SubMenus
+# TODO add more Browsers / Gaming stuff
+# Add install / remove feature
+show_browser_install_menu() {
+  case $(menu "BROWSER INSTALL MENU" "☯ Vivaldi\n☯ Chrome\n☯ Firefox\n☯ Brave\n☯ Helium\n☯ Opera") in
+  *Vivaldi*) install_browser "vivaldi" ;;
+  *Chrome*) install_browser "chrome" ;;
+  *Firefox*) install_browser "firefox" ;;
+  *Brave*) install_browser "brave" ;;
+  *Helium*) install_browser "helium" ;;
+  *Opera*) install_browser "opera" ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_browser_remove_menu() {
+  case $(menu "BROWSER REMOVE MENU" "☯ Vivaldi\n☯ Chrome\n☯ Firefox\n☯ Brave\n☯ Helium\n☯ Opera") in
+  *Vivaldi*) pac_remove "vivaldi" ;;
+  *Chrome*) yay_remove "google-chrome" ;;
+  *Firefox*) pac_remove "firefox" ;;
+  *Brave*) yay_remove "brave-bin" ;;
+  *Helium*) yay_remove "helium-browser-bin" ;;
+  *Opera*) yay_remove "opera" ;;
+  *) show_main_menu ;;
+  esac
+}
+
+# TODO flatpak-add /remove script
+show_gaming_install_menu() {
+  case $(menu "GAMING INSTALL MENU" "☯ Steam\n☯ Minecraft\n☯ Roblox\n☯ BattleNet\n☯ Tetris\n☯ Solitär") in
+  *Steam*) pac_add "steam" ;;
+  # TODO extra Minecraft,Roblox,BattleNet script
+  *Minecraft*) yay_install_and_launch "Minecraft" "minecraft-launcher" "minecraft-launcher" ;;
+  #*Roblox*) show_main_menu ;;
+  #*Battle.net*) show_main_menu ;;
+  *Tetris*) tetris_install && yay-rem tetris-tui-git ;;
+  *Solitär*) flatpak_add "org.gnome.Aisleriot" ;;
+  *) show_main_menu ;;
+  esac
+}
+
+# TODO Minecraft remover muss aber noch clearner werden
+# TODO Remove Tetris und Solitär und Flatpak
+# Launch extra window bei install Solitär
+show_gaming_remove_menu() {
+  case $(menu "GAMING REMOVE MENU" "☯ Steam\n☯ Minecraft\n☯ Roblox\n☯ BattleNet\n☯ Tetris\n☯ Solitär") in
+  *Steam*) show_main_menu ;;
+  *Minecraft*) yay_remove "minecraft-launcher" ;;
+  #*Roblox*) show_main_menu ;;
+  #*Battle.net*) show_main_menu ;;
+  *Tetris*) tetris_remove "tetris" ;;
+  *Solitär*) flatpak_remove "org.gnome.Aisleriot" ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_system_menu() {
+  case $(menu "SYSTEM POWER" "󰒲 Suspend\n Reboot\n Shutdown\n󰈆 Logout") in
+  *Suspend*) systemctl suspend ;;
+  *Reboot*) systemctl reboot ;;
+  *Shutdown*) systemctl poweroff ;;
+  *Logout*) pkill -u "$USER" ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_update_menu() {
+  case $(menu "Update" "  Arch\n  Config\n󰸌  Extra Themes\n  Process\n󰇅  Hardware\n  Firmware\n  Password\n  Timezone\n  Time") in
+  *Arch*) present_terminal arch-update ;;
+    #  *Channel*) show_update_channel_menu ;;
+    #  *Config*) show_update_config_menu ;;
+    #  *Themes*) present_terminal omarchy-theme-update ;;
+    #  *Process*) show_update_process_menu ;;
+    #  *Hardware*) show_update_hardware_menu ;;
+    #  *Firmware*) present_terminal omarchy-update-firmware ;;
+    #  *Timezone*) present_terminal omarchy-tz-select ;;
+    #  *Time*) present_terminal omarchy-update-time ;;
+    #  *Password*) show_update_password_menu ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_help_menu() {
+  case $(menu "HELP" "  Keybindings\n  Hyprland\n󰣇  Arch\n  Neovim\n󱆃  Bash") in
+  *Keybindings*) arch-menu-keybindings ;;
+  *Hyprland*) launch-webapp "https://wiki.hypr.land/" ;;
+  *Arch*) launch-webapp "https://wiki.archlinux.org/title/Main_page" ;;
+  *Neovim*) launch-webapp "https://www.lazyvim.org/keymaps" ;;
+  *Bash*) launch-webapp "https://devhints.io/bash" ;;
+  *) show_main_menu ;;
+  esac
+}
+
+menu() {
+  local prompt="$1"
+  local options="$2"
+  local extra="$3"
+  local preselect="$4"
+
+  read -r -a args <<<"$extra"
+
+  if [[ -n "$preselect" ]]; then
+    local index
+    index=$(echo -e "$options" | grep -nxF "$preselect" | cut -d: -f1)
+    if [[ -n "$index" ]]; then
+      args+=("-c" "$index")
+    fi
+  fi
+
+  echo -e "$options" | launch-walker --dmenu --width 900 --minheight 300 --maxheight 650 -p "$prompt…" "${args[@]}" 2>/dev/null
+}
+
+show_main_menu() {
+  go_to_menu "$(menu "Go" "󰀻  Apps\n  Style\n  Setup\n󰉉  Install\n󰭌  Remove\n  Update\n  Help\n  System")"
+}
+
+go_to_menu() {
+  case "${1,,}" in
+  *apps*) walker -p "Launch…" ;;
+  *style*) show_style_menu ;;
+  *theme*) show_theme_menu ;;
+  *setup*) show_setup_menu ;;
+  *install*) show_install_menu ;;
+  *remove*) show_remove_menu ;;
+  *update*) show_update_menu ;;
+  *help*) show_help_menu ;;
+  *system*) show_system_menu ;;
+  esac
+}
+
+if [[ -n "$1" ]]; then
+  BACK_TO_EXIT=true
+  go_to_menu "$1"
+else
+  show_main_menu
+fi

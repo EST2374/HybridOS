@@ -1,0 +1,9 @@
+[Unit]
+Description=Timer für Hyprsunset um 20 Uhr
+
+[Timer]
+OnCalendar=*-*-* 20:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# 1. Get the default browser name
+browser=$(xdg-settings get default-web-browser)
+
+# 2. Validate browser type
+case $browser in
+google-chrome* | brave-browser* | microsoft-edge* | opera* | vivaldi* | helium*) ;;
+*)
+  echo "no browser avaliable"
+  exit 1
+  ;;
+esac
+
+# 3. Extract the binary path and strip out %u/%U placeholders
+# This ensures the browser doesn't get confused by malformed arguments
+browser_bin=$(sed -n 's/^Exec=\([^ ]*\).*/\1/p' {~/.local,~/.nix-profile,/usr}/share/applications/$browser 2>/dev/null | head -1 | sed 's/%[uU]//g')
+
+# 4. Open the URL in the existing browser instance
+# We remove --app and uwsm-app to ensure it hooks into the existing process
+exec "$browser_bin" "$1" "${@:2}"

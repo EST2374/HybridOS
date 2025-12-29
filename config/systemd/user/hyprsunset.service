@@ -1,0 +1,9 @@
+[Unit]
+Description=Aktiviere Hyprsunset Blaulichtfilter
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash %h/.local/share/scripts/sunset_on.sh
+
+[Install]
+WantedBy=default.target

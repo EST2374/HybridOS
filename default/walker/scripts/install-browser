@@ -1,0 +1,49 @@
+#!/bin/bash
+
+if (($# == 0)); then
+  echo "Usage: install-browser [vivaldi|chrome|firefox|brave|helium|opera]"
+  exit 1
+fi
+
+package="$1"
+
+case "$package" in
+vivaldi)
+  desktop_id="vivaldi.desktop"
+  target="vivaldi"
+  ;;
+firefox)
+  desktop_id="firefox.desktop"
+  target="firefox"
+  ;;
+chrome)
+  desktop_id="google-chrome.desktop"
+  target="google-chrome"
+  ;;
+brave)
+  desktop_id="brave-browser.desktop"
+  target="brave-bin"
+  ;;
+helium)
+  desktop_id="helium-browser.desktop"
+  target="helium-browser-bin"
+  ;;
+opera)
+  desktop_id="opera.desktop"
+  target="opera"
+  ;;
+*)
+  echo "Unknown browser: $package"
+  exit 1
+  ;;
+esac
+
+# COMBINED LOGIC: Only one of these will ever run
+if [[ "$package" == "firefox" || "$package" == "vivaldi" ]]; then
+  sudo pacman -S --needed "$target"
+elif [[ "$package" == "chrome" || "$package" == "brave" || "$package" == "helium" || "$package" == "opera" ]]; then
+  yay -S --needed "$target"
+else
+  echo "Error: No installation method defined for $package"
+  exit 1
+fi

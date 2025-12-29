@@ -1,0 +1,111 @@
+/* Grundlegende Bar-Einstellungen */
+window#waybar {
+    background: rgba(15, 15, 15, 0.7);
+    border-radius: 15px;
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 13px; /* Etwas größer für bessere Lesbarkeit */
+}
+
+/* Gemeinsame Styles für alle "Sphären" (Module) */
+#custom-arch,
+#workspaces,
+#network,
+#clock,
+#custom-player,
+#pulseaudio.microphone {
+    background: rgba(255, 255, 255, 0.1);
+    margin: 4px 6px;
+    padding: 2px 15px;
+    border-radius: 50px; 
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Arch Symbol Links */
+#custom-arch {
+    color: #1793d1;
+    font-size: 18px;
+    padding-right: 20px;
+}
+
+/* Music Player - Sphäre */
+#custom-player {
+    background: rgba(137, 180, 250, 0.15); /* Sanftes Blau passend zum Music-Vibe */
+    color: #89b4fa;
+    font-size: 12px;
+}
+
+#custom-player.paused {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Workspaces Mitte */
+#workspaces {
+    background: rgba(255, 255, 255, 0.05);
+    margin: 5px 8px;
+    padding: 0px 10px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: rgba(255, 255, 255, 0.15); 
+    transition: all 0.3s ease;
+}
+
+#workspaces button.occupied {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    background: transparent;
+    font-size: 17px; /* Die aktive Sphäre wächst */
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+}
+
+/* Mikrofon-Indikator (Rechts) */
+#pulseaudio.microphone {
+    background: rgba(243, 139, 168, 0.2); 
+    color: #f38ba8;
+    text-shadow: 0 0 10px rgba(243, 139, 168, 0.4);
+}
+/* Stumm: Dezent ausgegraut */
+#pulseaudio.microphone.muted {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+}
+
+#custom-nightmode {
+    background: rgba(243, 139, 168, 0.1); /* Sanftes Catppuccin Rot-Transparent */
+    color: #f38ba8;
+    margin: 5px 4px;
+    padding: 0 15px;
+    border-radius: 100px;
+    transition: all 0.3s ease;
+}
+
+/* Wenn du den Button drückst oder er aktiv ist */
+#custom-nightmode:hover {
+    background: rgba(243, 139, 168, 0.3);
+    box-shadow: 0 0 10px rgba(243, 139, 168, 0.5);
+    color: #ffffff;
+}
+
+/* Rechte Module */
+#network {
+    color: #81c8be; 
+}
+
+#clock {
+    color: #f2ceb6; 
+    font-weight: bold;
+}
+
+/* Cleanup */
+#workspaces button.focused,
+#workspaces button.visible {
+    border: none;
+    box-shadow: none;
+}

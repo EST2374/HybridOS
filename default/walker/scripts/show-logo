@@ -1,0 +1,7 @@
+#!/bin/bash
+
+clear
+echo -e "\033[32m"
+cat <~/.config/walker/scripts/logo.txt
+echo -e "\033[0m"
+echo

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Cleaning official pacman cache (keeping last 2 versions)..."
+sudo paccache -r -k 2
+
+echo "Cleaning yay AUR cache (keeping last 2 versions)..."
+paccache -r -k 2 -c ~/.cache/yay
+
+echo "Removing orphaned packages (unused dependencies)..."
+sudo pacman -Rs $(pacman -Qdtq) 2>/dev/null || echo "No orphans to remove."
+
+echo "Done!"
