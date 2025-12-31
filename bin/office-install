@@ -1,0 +1,38 @@
+#!/bin/bash
+
+read -p "Your WinBoat Username: " Username
+read -p "Your WinBoat Password: " Password
+
+xfreerdp3 /u:"$Username" /p:"$Password" /v:127.0.0.1:47300 \
+  /app:program:"C:\Windows\System32\cmd.exe" \
+  /app-cmd:"/k winget install --id Microsoft.Office --source winget --accept-package-agreements --accept-source-agreements"
+
+mkdir -p $HOME/.local/share/applications/icons/Office
+OFFICE_ICONS=$HOME/.local/share/applications/icons/Office
+
+declare -A urls
+urls=(
+  ["word"]="https://logos-world.net/wp-content/uploads/2020/03/Microsoft-Word-Logo.png"
+  ["excel"]="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F022%2F100%2F783%2Fnon_2x%2Fmicrosoft-excel-logo-transparent-free-png.png&sp=1767136753T67c50f01a52111373fc3052deaa438106fd7db4ee6c03b7044cf591ee29eb152"
+  ["powerpoint"]="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Flogospng.org%2Fwp-content%2Fuploads%2Fmicrosoft-powerpoint.png&sp=1767136782T2aa9df0748cf7d6f07d7ca73011450e4aed1cbab3b7ce11061f2f4beaa079a41"
+)
+
+for app in "${!urls[@]}"; do
+  curl -L -A "Mozilla/5.0" "${urls[$app]}" -o "$OFFICE_ICONS/${app}_logo.png"
+
+  app_lower=$(echo "$app" | tr '[:upper:]' '[:lower:]')
+
+  cat <<EOF >~/.local/share/applications/${app,,}.desktop
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Microsoft ${app}
+Comment=Launch Microsoft ${app} Web
+Exec=$HOME/.local/share/HybridOS/bin/launch-office-app ${app}
+Icon=${OFFICE_ICONS}/${app}_logo.png
+Terminal=true
+Categories=Office;Microsoft;
+StartupNotify=true
+EOF
+
+done

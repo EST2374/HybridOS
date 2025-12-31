@@ -1,0 +1,12 @@
+#!/bin/bash
+
+read -p "Your WinBoat Username: " Username
+read -p "Your WinBoat Password: " Password
+
+APP=$1
+
+echo "You may need to close this Window after being done aswell (Work still in Progress!), Thanks for your understanding"
+
+xfreerdp3 /u:"$Username" /p:"$Password" /v:127.0.0.1:47300 /app:program:"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\\${APP}" >/dev/null 2>&1
+
+exit
