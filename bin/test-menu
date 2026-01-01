@@ -103,10 +103,11 @@ show_setup_power_menu() {
 
 # TODO TEST DISCORD INSTALL/REMOVE
 show_install_menu() {
-  case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming\n☕ Discord\n☯ OBS\n☯ LocalSend\n☯ Waydroid") in
+  case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming\n☕ Discord\n☯ Windows\n☯ OBS\n☯ LocalSend\n☯ Waydroid") in
   *Browser*) show_browser_install_menu ;;
   *Gaming*) show_gaming_install_menu ;;
   *Discord*) yay_install_nosudo "vesktop" ;;
+  *Windows*) show_windows_install_menu ;;
   *OBS*) pac_add "obs-studio" ;;
   *Waydroid*) pac_add "waydroid" ;;
   *LocalSend*) yay_install_nosudo "localsend-bin" ;;
@@ -173,6 +174,14 @@ show_gaming_remove_menu() {
   #*Battle.net*) show_main_menu ;;
   *Tetris*) tetris_remove "tetris" ;;
   *Solitär*) flatpak_remove "org.gnome.Aisleriot" ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_windows_install_menu() {
+  case $(menu "WINDOWS INSTALL" "☯ Windows\n☯ Office") in
+  *Windows*) present_terminal windows-vm ;;
+  *Office*) present_terminal office-install ;;
   *) show_main_menu ;;
   esac
 }

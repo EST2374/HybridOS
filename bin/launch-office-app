@@ -1,12 +1,37 @@
 #!/bin/bash
 
+CONTAINER_NAME="WinBoat"
 read -p "Your WinBoat Username: " Username
 read -p "Your WinBoat Password: " Password
 
 APP=$1
 
+pkill xfreerdp3 2>/dev/null
+
+if [ "$(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME 2>/dev/null)" != "true" ]; then
+  docker start $CONTAINER_NAME
+  sleep 2
+fi
+
+RDP_PORT=$(docker port $CONTAINER_NAME 3389 | cut -d':' -f2)
+
+if [ -z "$RDP_PORT" ]; then
+  echo "Error: Could not find RDP port"
+  exit 1
+fi
+
+until nc -z 127.0.0.1 $RDP_PORT >/dev/null 2>&1; do
+  sleep 1
+done
+
+sleep 2
+
 echo "You may need to close this Window after being done aswell (Work still in Progress!), Thanks for your understanding"
+echo "Just Press CTRL + C "
 
-xfreerdp3 /u:"$Username" /p:"$Password" /v:127.0.0.1:47300 /app:program:"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\\${APP}" >/dev/null 2>&1
+xfreerdp3 /u:"$Username" /p:"$Password" /v:127.0.0.1:$RDP_PORT /cert:ignore /app:program:"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\\${APP}" >/dev/null 2>&1
 
-exit
+echo "App close"
+docker stop $CONTAINER_NAME
+
+exit 0

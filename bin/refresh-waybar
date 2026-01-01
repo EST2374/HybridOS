@@ -2,4 +2,4 @@
 
 refresh-config waybar/config.jsonc
 refresh-config waybar/style.css
-restart-waybar
+pkill -SIGUSR2 waybar
