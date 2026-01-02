@@ -103,10 +103,9 @@ show_setup_power_menu() {
 
 # TODO TEST DISCORD INSTALL/REMOVE
 show_install_menu() {
-  case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming\n☕ Discord\n☯ Windows\n☯ OBS\n☯ LocalSend\n☯ Waydroid") in
+  case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming\n☯ Windows\n☯ OBS\n☯ LocalSend\n☯ Waydroid") in
   *Browser*) show_browser_install_menu ;;
   *Gaming*) show_gaming_install_menu ;;
-  *Discord*) yay_install_nosudo "vesktop" ;;
   *Windows*) show_windows_install_menu ;;
   *OBS*) pac_add "obs-studio" ;;
   *Waydroid*) pac_add "waydroid" ;;
@@ -116,10 +115,9 @@ show_install_menu() {
 }
 
 show_remove_menu() {
-  case $(menu "REMOVE MENU" "☯ Browser\n♛ Gaming\n☕ Discord\n☯ OBS\n☯ LocalSend\n☯ Waydroid") in
+  case $(menu "REMOVE MENU" "☯ Browser\n♛ Gaming\n☯ OBS\n☯ LocalSend\n☯ Waydroid") in
   *Browser*) show_browser_remove_menu ;;
   *Gaming*) show_gaming_remove_menu ;;
-  *Discord*) yay_remove "vesktop" ;;
   *OBS*) pac_remove "obs-studio" ;;
   *Waydroid*) pac_remove "waydroid" ;;
   *LocalSend*) yay_remove "localsend-bin" ;;
