@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Discord
+Comment=Launch Discord
+Exec=vivaldi --app="https://discord.com/channels/@me" --user-data-dir="$HOME/.config/discord"
+Icon=/home/est/.local/share/applications/icons/Discord.png
+Terminal=false
+StartupNotify=true

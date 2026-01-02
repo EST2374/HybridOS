@@ -28,6 +28,7 @@ sudo pacman -S --needed --noconfirm \
   gum \
   xdg-desktop-portal-hyprland \
   xdg-desktop-portal-gtk \
+  xdg-desktop-portal-kde \
   polkit-kde-agent \
   dunst \
   pipewire \
@@ -39,7 +40,9 @@ sudo pacman -S --needed --noconfirm \
   sddm \
   qt6-svg \
   qt6-virtualkeyboard \
-  qt6-multimedia-ffmpeg
+  qt6-multimedia-ffmpeg \
+  plasma-meta \
+  kde-applications-meta
 
 # If yay isnt installed
 if ! command -v yay &>/dev/null; then

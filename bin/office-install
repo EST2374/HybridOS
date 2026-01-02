@@ -23,6 +23,9 @@ done
 
 xfreerdp3 /u:"$Username" /p:"$Password" /v:127.0.0.1:$RDP_PORT /cert:ignore /app:program:"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe",cmd:"-NoProfile -Command winget install --id Microsoft.Office --source winget --accept-package-agreements --accept-source-agreements" >/dev/null 2>&1
 
+echo "Installation finished"
+echo "Press a button [x]"
+
 mkdir -p $HOME/.local/share/applications/icons/Office
 OFFICE_ICONS=$HOME/.local/share/applications/icons/Office
 
@@ -38,7 +41,7 @@ for app in "${!urls[@]}"; do
 
   app_lower=$(echo "$app" | tr '[:upper:]' '[:lower:]')
 
-  cat <<EOF >~/.local/share/applications/${app,,}.desktop
+  cat <<EOF >~/.local/share/applications/Office-${app,,}.desktop
 [Desktop Entry]
 Version=1.0
 Type=Application

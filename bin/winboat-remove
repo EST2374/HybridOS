@@ -1,0 +1,11 @@
+#!/bin/bash
+
+yay-rem winboat-bin
+
+sudo gpasswd -d $USER docker
+sudo systemctl disable --now docker
+
+rm -rf $HOME/.winboat
+rm -rf $HOME/winboat
+rm -rf $HOME/.local/share/applications/Office-*.desktop
+rm -rf $HOME/.local/share/applications/icons/Office
