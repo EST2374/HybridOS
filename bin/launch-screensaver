@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Exit early if we don't have the tte show
+if ! command -v tte &>/dev/null; then
+  exit 1
+fi
+
+# Exit early if screensave is already running
+pgrep -f org.est.screensaver && exit 0
+
+# Silently quit Walker on overlay
+walker -q
+
+focused=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')
+terminal=$(xdg-terminal-exec --print-id)
+
+for m in $(hyprctl monitors -j | jq -r '.[] | .name'); do
+  hyprctl dispatch focusmonitor $m
+
+  case $terminal in
+  *Alacritty*)
+    hyprctl dispatch exec -- \
+      alacritty --class=org.est.screensaver \
+      --config-file ~/.local/share/HybridOS/default/alacritty/screensaver.toml \
+      -e cmd-screensaver
+    ;;
+  *)
+    notify-send "✋  Screensaver only runs in Alacritty"
+    ;;
+  esac
+done
+
+hyprctl dispatch focusmonitor $focused

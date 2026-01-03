@@ -7,12 +7,13 @@ sudo pacman -Syu --noconfirm
 echo "Installing core dependencies..."
 sudo pacman -S --needed --noconfirm \
   hyprland \
+  hypridle \
+  hyprlock \
   uwsm \
   waybar \
   alacritty \
   nautilus \
   gvfs \
-  flameshot \
   grim \
   slurp \
   networkmanager \
@@ -41,8 +42,7 @@ sudo pacman -S --needed --noconfirm \
   qt6-svg \
   qt6-virtualkeyboard \
   qt6-multimedia-ffmpeg \
-  plasma-meta \
-  kde-applications-meta
+  plasma-desktop
 
 # If yay isnt installed
 if ! command -v yay &>/dev/null; then
@@ -58,7 +58,8 @@ fi
 echo "Installing AUR packages..."
 yay -S --noconfirm \
   walker-bin \
-  nmgui-bin
+  nmgui-bin \
+  wayfreeze-git
 
 # Copy Repo to local share
 echo "Setting up HybridOS directories..."
@@ -74,6 +75,13 @@ cp -r ./config/* $HOME/.config
 echo "Setting up bash profiles..."
 cp ./default/bash/bashrc $HOME/.bashrc
 cp ./default/bash/bash_profile $HOME/.bash_profile
+
+# Copy apps and icons
+echo "Copying default icons and desktop apps"
+mkdir -p $HOME/.local/share/applications/icons
+cp ./applications/icons/* $HOME/.local/share/applications/icons
+./applications/walker/walker_kde-2-desktop
+./applications/discord/discord-2-desktop
 
 # Binaries executable machen
 echo "Setting permissions for custom scripts..."

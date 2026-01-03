@@ -70,6 +70,14 @@ install_browser() {
 # SubMenues
 
 # TODO Styles
+show_screenshot_menu() {
+  case $(menu "Screenshot" "  Snap with Editing\n  Straight to Clipboard") in
+  *Editing*) cmd-screenshot smart ;;
+  *Clipboard*) cmd-screenshot smart clipboard ;;
+  *) show_capture_menu ;;
+  esac
+}
+
 show_style_menu() {
   case $(menu "STYLE SETTINGS" "󰸌 Theme\n󰃉 Wallpaper\n󰍛 Fonts\n󰔎 LoginScreen") in
   *Theme*) ;;
@@ -242,12 +250,13 @@ menu() {
 }
 
 show_main_menu() {
-  go_to_menu "$(menu "Go" "󰀻  Apps\n  Style\n  Setup\n󰉉  Install\n󰭌  Remove\n  Update\n  Help\n  System")"
+  go_to_menu "$(menu "Go" "󰀻  Apps\n󱓞  Screenshot\n  Style\n  Setup\n󰉉  Install\n󰭌  Remove\n  Update\n  Help\n  System")"
 }
 
 go_to_menu() {
   case "${1,,}" in
   *apps*) walker -p "Launch…" ;;
+  *screenshot*) show_screenshot_menu ;;
   *style*) show_style_menu ;;
   *theme*) show_theme_menu ;;
   *setup*) show_setup_menu ;;

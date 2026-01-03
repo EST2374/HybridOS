@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cat <<EOF >~/Desktop/walker.desktop
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Walker
+Comment=Launch Walker
+Exec=kde-menu
+Icon=/home/est/.local/share/applications/icons/walker.png
+Terminal=false
+StartupNotify=true
+EOF

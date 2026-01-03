@@ -3,4 +3,4 @@
 SCRIPT_DIR="$HOME/.local/share/HybridOS/bin"
 cmd="$*"
 
-exec setsid uwsm-app -- alacritty --class org.est.terminal --title "Arch" -e bash -c "show-logo; $cmd; show-done"
+exec setsid uwsm-app -- hyprctl dispatch exec "[float; size 900 600; center] alacritty --class org.est.terminal --title 'Arch' -e bash -c 'show-logo; $cmd; show-done'"
