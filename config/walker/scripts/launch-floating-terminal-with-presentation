@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# Define the script directory to avoid path issues
-SCRIPT_DIR="$HOME/.config/walker/scripts"
-cmd="$*"
-
-# Execute Alacritty with the specific class defined in hyprland.conf
-exec setsid uwsm-app -- alacritty --class org.est.terminal --title "Arch" -e bash -c "show-logo; $cmd; show-done"

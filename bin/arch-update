@@ -16,4 +16,6 @@ if [ -n "$ORPHANS" ]; then
   sudo pacman -Rns $ORPHANS
 fi
 
+clean-cache
+
 echo "All updates finished"

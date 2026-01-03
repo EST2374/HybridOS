@@ -1,13 +1,11 @@
-/* Grundlegende Bar-Einstellungen */
 window#waybar {
     background: rgba(15, 15, 15, 0.7);
     border-radius: 15px;
     color: #ffffff;
     font-family: "JetBrainsMono Nerd Font", sans-serif;
-    font-size: 13px; /* Etwas größer für bessere Lesbarkeit */
+    font-size: 13px;
 }
 
-/* Gemeinsame Styles für alle "Sphären" (Module) */
 #custom-arch,
 #workspaces,
 #network,
@@ -21,16 +19,15 @@ window#waybar {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Arch Symbol Links */
+/*Left Part*/
 #custom-arch {
     color: #1793d1;
     font-size: 18px;
     padding-right: 20px;
 }
 
-/* Music Player - Sphäre */
 #custom-player {
-    background: rgba(137, 180, 250, 0.15); /* Sanftes Blau passend zum Music-Vibe */
+    background: rgba(137, 180, 250, 0.15);
     color: #89b4fa;
     font-size: 12px;
 }
@@ -40,7 +37,7 @@ window#waybar {
     color: rgba(255, 255, 255, 0.4);
 }
 
-/* Workspaces Mitte */
+/*Middle Part*/
 #workspaces {
     background: rgba(255, 255, 255, 0.05);
     margin: 5px 8px;
@@ -60,17 +57,15 @@ window#waybar {
 #workspaces button.active {
     color: #ffffff;
     background: transparent;
-    font-size: 17px; /* Die aktive Sphäre wächst */
+    font-size: 17px;
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
 }
 
-/* Mikrofon-Indikator (Rechts) */
 #pulseaudio.microphone {
     background: rgba(243, 139, 168, 0.2); 
     color: #f38ba8;
     text-shadow: 0 0 10px rgba(243, 139, 168, 0.4);
 }
-/* Stumm: Dezent ausgegraut */
 #pulseaudio.microphone.muted {
     background: rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.3);
@@ -78,7 +73,7 @@ window#waybar {
 }
 
 #custom-nightmode {
-    background: rgba(243, 139, 168, 0.1); /* Sanftes Catppuccin Rot-Transparent */
+    background: rgba(243, 139, 168, 0.1);
     color: #f38ba8;
     margin: 5px 4px;
     padding: 0 15px;
@@ -86,14 +81,13 @@ window#waybar {
     transition: all 0.3s ease;
 }
 
-/* Wenn du den Button drückst oder er aktiv ist */
 #custom-nightmode:hover {
     background: rgba(243, 139, 168, 0.3);
     box-shadow: 0 0 10px rgba(243, 139, 168, 0.5);
     color: #ffffff;
 }
 
-/* Rechte Module */
+/*Right Part*/
 #network {
     color: #81c8be; 
 }
@@ -103,7 +97,6 @@ window#waybar {
     font-weight: bold;
 }
 
-/* Cleanup */
 #workspaces button.focused,
 #workspaces button.visible {
     border: none;

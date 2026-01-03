@@ -65,6 +65,8 @@ Categories=Microsoft
 StartupNotify=true
 EOF
 
+docker update --restart=no WinBoat
+
 echo -e "\n${GREEN}======================================"
 echo -e "   SETUP COMPLETE!"
 echo -e "======================================${NC}"
