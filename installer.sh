@@ -9,6 +9,16 @@ sudo pacman -S --needed --noconfirm \
   hyprland \
   hypridle \
   hyprlock \
+  zoxide \
+  eza \
+  fzf \
+  bat \
+  fastfetch \
+  startship \
+  bash-completion \
+  xdg-utils \
+  neovim \
+  mise \
   uwsm \
   waybar \
   alacritty \
@@ -35,6 +45,8 @@ sudo pacman -S --needed --noconfirm \
   pavucontrol \
   ttf-font-jetbrains-mono-nerd \
   ttf-nerd-fonts-symbols-common \
+  ttf-hack \
+  ttf-liberation \
   sddm \
   qt6-svg \
   qt6-virtualkeyboard \
@@ -75,6 +87,8 @@ cp -r ./config/* $HOME/.config
 echo "Setting up bash profiles..."
 cp ./default/bash/bashrc $HOME/.bashrc
 cp ./default/bash/bash_profile $HOME/.bash_profile
+
+cp ./default/pacman/pacman.conf /etc/pacman.conf
 
 # Copy apps and icons
 echo "Copying default icons and desktop apps"
