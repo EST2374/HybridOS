@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WP_PATH="$HOME/.local/share/HybridOS/wallpapers"
+WP_PATH="$HOME/.config/hybridOS/current/theme/backgrounds"
 
 selected=$(find "$WP_PATH" -maxdepth 1 -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \) | sort | while read -r path; do
   echo "$(basename "${path%.*}" | sed -E 's/(^|-)([a-z])/\1\u\2/g; s/-/ /g')"
