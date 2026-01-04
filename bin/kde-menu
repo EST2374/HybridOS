@@ -19,7 +19,7 @@ back_to() {
 
 # Helping functions
 present_terminal() {
-  launch-floating-terminal-with-presentation $1
+  launch-kde-floating-terminal $1
 }
 
 # Only for Minecraft for now
@@ -69,11 +69,11 @@ install_browser() {
 
 # SubMenues
 
-# TODO Styles
+# KDE Screenshot stuff
 show_screenshot_menu() {
   case $(menu "Screenshot" "  Snap with Editing\n  Straight to Clipboard") in
-  *Editing*) cmd-screenshot smart ;;
-  *Clipboard*) cmd-screenshot smart clipboard ;;
+  *Editing*) ;;
+  *Clipboard*) ;;
   *) show_capture_menu ;;
   esac
 }
@@ -111,11 +111,12 @@ show_setup_power_menu() {
 
 # TODO TEST DISCORD INSTALL/REMOVE
 show_install_menu() {
-  case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming\n☯ Windows\n☯ OBS\n☯ LocalSend\n☯ Waydroid") in
+  case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming\n☯ Windows\n☯ OBS\n☯ DaVinciResolve\n☯ LocalSend\n☯ Waydroid") in
   *Browser*) show_browser_install_menu ;;
   *Gaming*) show_gaming_install_menu ;;
   *Windows*) show_windows_install_menu ;;
   *OBS*) pac_add "obs-studio" ;;
+  *DaVinciResolve*) present_terminal "davinci_resolve-install" ;;
   *Waydroid*) pac_add "waydroid" ;;
   *LocalSend*) yay_install_nosudo "localsend-bin" ;;
   *) show_main_menu ;;

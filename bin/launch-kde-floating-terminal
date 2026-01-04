@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cmd="$*"
+
+alacritty -e bash -c "show-logo; $cmd; show-done;"

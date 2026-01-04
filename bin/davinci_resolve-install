@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# TODO
+# Add dependencies for AMD
+
+nvidia=('nvidia-open' 'nvidia-utils' 'cuda')
+
+for pkg in "${nvidia[@]}"; do
+  if pac-missing $pkg; then
+    sudo pacman -S --noconfirm --needed $pkg || exit 1
+  fi
+done
+
+sudo pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com
+sudo pacman-key --lsign-key F3B607488DB35A47
+
+curl -O https://mirror.cachyos.org/cachyos-repo.tar.xz
+mkdir -p $HOME/tmp
+mv ./cachyos-repo.tar.xz $HOME/tmp
+tar xvf $HOME/tmp/cachyos-repo.tar.xz
+mv ./cachyos-repo $HOME/tmp
+sudo bash $HOME/tmp/cachyos-repo/cachyos-repo.sh
+sudo pacman -Syu
+sudo pacman -S davinci-resolve
