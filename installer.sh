@@ -13,12 +13,9 @@ sudo pacman -S --needed --noconfirm \
   waybar \
   alacritty \
   nautilus \
-  gvfs \
   grim \
   slurp \
   networkmanager \
-  bluez \
-  bluez-utils \
   bluetui \
   power-profiles-daemon \
   git \
@@ -36,7 +33,7 @@ sudo pacman -S --needed --noconfirm \
   pipewire-pulse \
   wireplumber \
   pavucontrol \
-  ttf-font-awesome \
+  ttf-font-jetbrains-mono-nerd \
   ttf-nerd-fonts-symbols-common \
   sddm \
   qt6-svg \
@@ -61,10 +58,13 @@ yay -S --noconfirm \
   nmgui-bin \
   wayfreeze-git
 
+SHARE_PATH="$HOME/.local/share/HybridOS"
+CONFIG_PATH="$HOME/.config/hybridOS"
+
 # Copy Repo to local share
 echo "Setting up HybridOS directories..."
-mkdir -p $HOME/.local/share/HybridOS
-cp -r ./* $HOME/.local/share/HybridOS
+mkdir -p $SHARE_PATH
+cp -r ./* $SHARE_PATH
 
 # Copy configs to .configs
 echo "Deploying config files..."
@@ -83,8 +83,25 @@ cp ./applications/icons/* $HOME/.local/share/applications/icons
 ./applications/walker/walker_kde-2-desktop
 ./applications/discord/discord-2-desktop
 
+mkdir -p $HOME/.config/hybridOS/themes/
+for theme in "$SHARE_PATH/themes"/*/; do
+  if [ -d "$theme" ]; then
+    dir=$(basename "$theme")
+    ln -nsf "$SHARE_PATH/themes/$dir" "$CONFIG_PATH/themes/$dir"
+  fi
+done
+
+mkdir -p $CONFIG_PATH/current/
+ln -nsf $CONFIG_PATH/themes/default $CONFIG_PATH/current/theme
+ln -nsf $CONFIG_PATH/current/theme/backgrounds/a-logo-with-white-text.png $CONFIG_PATH/current/background
+
+mkdir -p $CONFIG_PATH/logos/
+cp ./logo.txt $CONFIG_PATH/logos
+
 # Binaries executable machen
 echo "Setting permissions for custom scripts..."
-chmod +x $HOME/.local/share/HybridOS/bin/*
+if [ -d "$SHARE_PATH/bin" ]; then
+  chmod +x "$SHARE_PATH/bin"/*
+fi
 
 echo "Installation complete! Please restart/reboot your session."

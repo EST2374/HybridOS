@@ -1,8 +1,0 @@
-#!/bin/bash
-
-APP=$1
-
-sudo rm -rf /usr/local/bin/tetris
-
-sudo rm -rf ~/.local/share/icons/tetris.png
-sudo rm -rf ~/.local/share/applications/tetris.desktop

@@ -1,0 +1,9 @@
+@define-color base #11111b;
+@define-color surface #1e1e2e;
+@define-color text #cdd6f4;
+@define-color subtext #7f849c;
+@define-color accent #b4befe;
+@define-color highlight #89dceb;
+@define-color overlay #181825;
+@define-color input_text #f5e0dc;
+@define-color warning #fab387;

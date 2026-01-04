@@ -5,16 +5,18 @@ single_click_activation = true  # activate items with a single click opposed to 
 selection_wrap = true          # wrap list if at bottom or top
 global_argument_delimiter = "#" # query: firefox#https://benz.dev => part after delimiter will be ignored when querying. this should be the same as in the elephant config
 exact_search_prefix = "'"       # disable fuzzy searching
-theme = "mini"                 # theme to use
+theme = "hybridOS-default"                 # theme to use
 disable_mouse = false           # disable mouse (on input and list only)
 debug = false                   # enables debug printing for some stuff, f.e. keybinds
 page_jump_items = 10            # number of items to skip with Page Up/Down
 hide_quick_activation = true    # globally hide the quick activation buttons
-hide_action_hints = false       # globally hide the action hints
+hide_action_hints = true       # globally hide the action hints
 hide_action_hints_dmenu = true  # hide the actions hints for dmenu
 hide_return_action = false      # hide actions that are bound to Return
 resume_last_query = false       # open walker with the last query in place
 actions_as_menu = false         # display all possible actions in a submenu
+additional_theme_location = "~/.local/share/HybridOS/default/walker/themes/"
+
 
 [shell]
 anchor_top = true

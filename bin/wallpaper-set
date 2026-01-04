@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BG_DIR="$HOME/.local/share/HybridOS/wallpapers"
+BG_DIR="$HOME/.config/hybridOS/current/theme/backgrounds"
 
 selected=$(find "$BG_DIR" -maxdepth 1 -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \) | sort | while read -r path; do
   echo "$(basename "${path%.*}" | sed -E 's/(^|-)([a-z])/\1\u\2/g; s/-/ /g')"

@@ -1,33 +1,44 @@
 #!/bin/bash
 
-BACKGROUNDS_DIR="$HOME/.local/share/HybridOS/wallpapers"
-STATE_FILE="$HOME/.cache/current_wallpaper.txt"
+BACKGROUNDS_DIR="$HOME/.config/hybridOS/current/theme/backgrounds/"
+CURRENT_BACKGROUND_LINK="$HOME/.config/hybridOS/current/background"
 
-mapfile -d '' -t BACKGROUNDS < <(find -L "$BACKGROUNDS_DIR" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.webp" \) -print0 | sort -z)
+mapfile -d '' -t BACKGROUNDS < <(find -L "$BACKGROUNDS_DIR" -type f -print0 | sort -z)
 TOTAL=${#BACKGROUNDS[@]}
 
 if [[ $TOTAL -eq 0 ]]; then
-  notify-send "No background was found" -t 2000
-  exit 1
-fi
-
-if [[ -f "$STATE_FILE" ]]; then
-  CURRENT_BACKGROUND=$(cat "$STATE_FILE")
+  notify-send "No background was found for theme" -t 2000
+  pkill -x swaybg
+  setsid uwsm-app -- swaybg --color '#000000' >/dev/null 2>&1 &
 else
-  CURRENT_BACKGROUND=""
-fi
-
-INDEX=-1
-for i in "${!BACKGROUNDS[@]}"; do
-  if [[ "${BACKGROUNDS[$i]}" == "$CURRENT_BACKGROUND" ]]; then
-    INDEX=$i
-    break
+  # Get current background from symlink
+  if [[ -L "$CURRENT_BACKGROUND_LINK" ]]; then
+    CURRENT_BACKGROUND=$(readlink "$CURRENT_BACKGROUND_LINK")
+  else
+    # Default to first background if no symlink exists
+    CURRENT_BACKGROUND=""
   fi
-done
 
-NEXT_INDEX=$(((INDEX + 1) % TOTAL))
-NEW_BACKGROUND="${BACKGROUNDS[$NEXT_INDEX]}"
+  # Find current background index
+  INDEX=-1
+  for i in "${!BACKGROUNDS[@]}"; do
+    if [[ "${BACKGROUNDS[$i]}" == "$CURRENT_BACKGROUND" ]]; then
+      INDEX=$i
+      break
+    fi
+  done
 
-echo "$NEW_BACKGROUND" >"$STATE_FILE"
+  # Get next background (wrap around)
+  if [[ $INDEX -eq -1 ]]; then
+    # Use the first background when no match was found
+    NEW_BACKGROUND="${BACKGROUNDS[0]}"
+  else
+    NEXT_INDEX=$(((INDEX + 1) % TOTAL))
+    NEW_BACKGROUND="${BACKGROUNDS[$NEXT_INDEX]}"
+  fi
 
-swww img "$NEW_BACKGROUND" --transition-type wipe --transition-angle 30 --transition-duration 1.5
+  # Set new background symlink
+  ln -nsf "$NEW_BACKGROUND" "$CURRENT_BACKGROUND_LINK"
+
+  swww img "$NEW_BACKGROUND" --transition-type wipe --transition-angle 30 --transition-duration 1.5
+fi

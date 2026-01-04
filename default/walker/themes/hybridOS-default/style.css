@@ -1,8 +1,10 @@
+@import "../../../../../../../.config/hybridOS/current/theme/walker.css";
+
 * {
   all: unset;
   font-family: "JetBrains Mono Nerd Font", "monospace";
-  font-size: 15px;
-  color: #cdd6f4; 
+  font-size: 15px;  
+  color: @text;
 }
 
 scrollbar {
@@ -10,7 +12,7 @@ scrollbar {
 }
 
 .normal-icons {
-  -gtk-icon-size: 18px;
+  -gtk-icon-size: 18px; 
 }
 
 .large-icons {
@@ -18,27 +20,27 @@ scrollbar {
 }
 
 .box-wrapper {
-  background: rgba(17, 17, 27, 0.9); 
+  background: alpha(@base, 0.9);
   padding: 12px;
-  border: 1px solid #b4befe; 
+  border: 1px solid @accent;
   border-radius: 12px;
 }
 
 .search-container {
-  background: rgba(30, 30, 46, 0.5); 
+  background: alpha(@surface, 0.5);
   padding: 8px 12px;
   border-radius: 8px;
   margin-bottom: 10px;
-  border: 1px solid rgba(180, 190, 254, 0.2);
+  border: 1px solid alpha(@accent, 0.2);
 }
 
 .input {
-  color: #f5e0dc; 
+  color: @input_text;
 }
 
 .input placeholder {
   opacity: 0.4;
-  color: #7f849c;
+  color: @subtext;
 }
 
 .item-box {
@@ -54,11 +56,11 @@ scrollbar {
 }
 
 child:selected .item-box {
-  background: rgba(180, 190, 254, 0.15); 
+  background: alpha(@accent, 0.15);
 }
 
 child:selected .item-box * {
-  color: #89dceb; 
+  color: @highlight;
   font-weight: bold;
 }
 
@@ -76,7 +78,7 @@ child:selected .item-box * {
 }
 
 .keybind-hints {
-  background: rgba(24, 24, 37, 0.8);
+  background: alpha(@overlay, 0.8);
   padding: 8px;
   margin-top: 5px;
   border-radius: 0 0 8px 8px;
@@ -86,5 +88,5 @@ child:selected .item-box * {
 
 .current {
   font-style: italic;
-  color: #fab387; 
+  color: @warning;
 }

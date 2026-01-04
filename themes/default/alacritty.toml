@@ -1,0 +1,44 @@
+[font]
+size = 13.0
+
+[font.normal]
+family = "JetBrains Mono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrains Mono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrains Mono Nerd Font"
+style = "Italic"
+
+[colors]
+[colors.primary]
+background = '#1A1A22'
+foreground = '#E0E0E0'
+
+# Normal colors
+[colors.normal]
+black   = '#2C2C34'
+red     = '#CC3333'
+green   = '#8BC34A'
+yellow  = '#919090'
+blue    = '#B86C00'
+magenta = '#CC3333'
+cyan    = '#00BCD4'
+white   = '#EDEDED'
+
+# Bright colors
+[colors.bright]
+black   = '#3E3E4C'
+red     = '#FF6666'
+green   = '#C5E1A5'
+yellow  = '#FFF176'
+blue    = '#64B5F6'
+magenta = '#FF6666'
+cyan    = '#4DD0E1'
+white   = '#FFFFFF'
+
+[colors.selection]
+background = '#CC3333'
