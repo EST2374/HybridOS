@@ -109,7 +109,6 @@ show_setup_power_menu() {
   fi
 }
 
-# TODO TEST DISCORD INSTALL/REMOVE
 show_install_menu() {
   case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming\n☯ Windows\n☯ OBS\n☯ DaVinciResolve\n☯ LocalSend\n☯ Waydroid") in
   *Browser*) show_browser_install_menu ;;
@@ -124,11 +123,12 @@ show_install_menu() {
 }
 
 show_remove_menu() {
-  case $(menu "REMOVE MENU" "☯ Browser\n♛ Gaming\n☯ Windows\n☯ OBS\n☯ LocalSend\n☯ Waydroid") in
+  case $(menu "REMOVE MENU" "☯ Browser\n♛ Gaming\n☯ Windows\n☯ OBS\n☯ DaVinciResolve\n☯ LocalSend\n☯ Waydroid") in
   *Browser*) show_browser_remove_menu ;;
   *Gaming*) show_gaming_remove_menu ;;
   *Windows*) present_terminal winboat-remove ;;
   *OBS*) pac_remove "obs-studio" ;;
+  *DaVinciResolve*) pac_remove "davinci-resolve" ;;
   *Waydroid*) pac_remove "waydroid" ;;
   *LocalSend*) yay_remove "localsend-bin" ;;
   *) show_main_menu ;;

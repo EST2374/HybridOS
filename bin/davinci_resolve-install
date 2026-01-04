@@ -22,3 +22,5 @@ mv ./cachyos-repo $HOME/tmp
 sudo bash $HOME/tmp/cachyos-repo/cachyos-repo.sh
 sudo pacman -Syu
 sudo pacman -S davinci-resolve
+
+rm -rf $HOME/tmp
