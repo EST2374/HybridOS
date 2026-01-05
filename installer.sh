@@ -14,7 +14,7 @@ sudo pacman -S --needed --noconfirm \
   fzf \
   bat \
   fastfetch \
-  startship \
+  starship \
   bash-completion \
   xdg-utils \
   neovim \
@@ -43,7 +43,7 @@ sudo pacman -S --needed --noconfirm \
   pipewire-pulse \
   wireplumber \
   pavucontrol \
-  ttf-font-jetbrains-mono-nerd \
+  ttf-jetbrains-mono-nerd \
   ttf-nerd-fonts-symbols \
   ttf-hack \
   ttf-liberation \
