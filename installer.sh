@@ -44,7 +44,7 @@ sudo pacman -S --needed --noconfirm \
   wireplumber \
   pavucontrol \
   ttf-font-jetbrains-mono-nerd \
-  ttf-nerd-fonts-symbols-common \
+  ttf-nerd-fonts-symbols \
   ttf-hack \
   ttf-liberation \
   sddm \
@@ -88,7 +88,7 @@ echo "Setting up bash profiles..."
 cp ./default/bash/bashrc $HOME/.bashrc
 cp ./default/bash/bash_profile $HOME/.bash_profile
 
-cp ./default/pacman/pacman.conf /etc/pacman.conf
+sudo cp ./default/pacman/pacman.conf /etc/pacman.conf
 
 # Copy apps and icons
 echo "Copying default icons and desktop apps"

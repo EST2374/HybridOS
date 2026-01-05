@@ -68,16 +68,6 @@ install_browser() {
 }
 
 # SubMenues
-
-# KDE Screenshot stuff
-show_screenshot_menu() {
-  case $(menu "Screenshot" "  Snap with Editing\n  Straight to Clipboard") in
-  *Editing*) ;;
-  *Clipboard*) ;;
-  *) show_capture_menu ;;
-  esac
-}
-
 show_style_menu() {
   case $(menu "STYLE SETTINGS" "󰸌 Theme\n󰃉 Wallpaper\n󰍛 Fonts\n󰔎 LoginScreen") in
   *Theme*) ;;
@@ -90,9 +80,9 @@ show_style_menu() {
 
 show_setup_menu() {
   case $(menu "SETUP SETTINGS" "  Audio\n  Wifi\n󰂯  Bluetooth\n󱐋  Power Profile\n󰍹  Monitors") in
-  *Audio*) launch-or-focus-tui wiremix ;;
+  *Audio*) pavucontrol ;;
   *Wifi*) launch-wifi ;;
-  *Bluetooth*) launch-bluetooth ;;
+  *Bluetooth*) bluedevil-wizard ;;
   *Power*) show_setup_power_menu ;;
   *Monitors*) ;;
   *) show_main_menu ;;
@@ -144,7 +134,7 @@ show_browser_install_menu() {
   *Brave*) install_browser "brave" ;;
   *Helium*) install_browser "helium" ;;
   *Opera*) install_browser "opera" ;;
-  *) show_main_menu ;;
+  *) show_install_menu ;;
   esac
 }
 
@@ -156,7 +146,7 @@ show_browser_remove_menu() {
   *Brave*) yay_remove "brave-bin" ;;
   *Helium*) yay_remove "helium-browser-bin" ;;
   *Opera*) yay_remove "opera" ;;
-  *) show_main_menu ;;
+  *) show_remove_menu ;;
   esac
 }
 
@@ -169,7 +159,7 @@ show_gaming_install_menu() {
   #*Battle.net*) show_main_menu ;;
   *Tetris*) tetris_install && yay-rem tetris-tui-git ;;
   *Solitär*) flatpak_add "org.gnome.Aisleriot" ;;
-  *) show_main_menu ;;
+  *) show_install_menu ;;
   esac
 }
 
@@ -182,7 +172,7 @@ show_gaming_remove_menu() {
   #*Battle.net*) show_main_menu ;;
   *Tetris*) tetris_remove "tetris" ;;
   *Solitär*) flatpak_remove "org.gnome.Aisleriot" ;;
-  *) show_main_menu ;;
+  *) show_remove_menu ;;
   esac
 }
 
@@ -190,7 +180,7 @@ show_windows_install_menu() {
   case $(menu "WINDOWS INSTALL" "☯ Windows\n☯ Office") in
   *Windows*) present_terminal winboat-install ;;
   *Office*) present_terminal office-install ;;
-  *) show_main_menu ;;
+  *) show_install_menu ;;
   esac
 }
 
@@ -257,7 +247,7 @@ show_main_menu() {
 go_to_menu() {
   case "${1,,}" in
   *apps*) walker -p "Launch…" ;;
-  *screenshot*) show_screenshot_menu ;;
+  *screenshot*) spectacle ;;
   *style*) show_style_menu ;;
   *theme*) show_theme_menu ;;
   *setup*) show_setup_menu ;;
