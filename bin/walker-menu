@@ -202,7 +202,7 @@ show_windows_install_menu() {
 show_system_menu() {
   case $(menu "SYSTEM" "  Lock\n󱄄  Screensaver\n Reboot\n Shutdown\n󰈆 Logout") in
   *Lock*) lock-screen ;;
-  *Screensaver*) launch-screensaver force ;;
+  *Screensaver*) hyprdvd --screensaver ;;
   *Reboot*) systemctl reboot ;;
   *Shutdown*) systemctl poweroff ;;
   *Logout*) pkill -u "$USER" ;;
