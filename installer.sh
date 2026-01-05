@@ -68,7 +68,8 @@ echo "Installing AUR packages..."
 yay -S --noconfirm \
   walker-bin \
   nmgui-bin \
-  wayfreeze-git
+  wayfreeze-git \
+  hyprdvd
 
 SHARE_PATH="$HOME/.local/share/HybridOS"
 CONFIG_PATH="$HOME/.config/hybridOS"
