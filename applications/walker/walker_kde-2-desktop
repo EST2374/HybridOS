@@ -8,7 +8,7 @@ Type=Application
 Name=Walker
 Comment=Launch Walker
 Exec=kde-menu
-Icon=/home/est/.local/share/applications/icons/walker.png
+Icon=$HOME/.local/share/applications/icons/walker.png
 Terminal=false
 StartupNotify=true
 EOF
