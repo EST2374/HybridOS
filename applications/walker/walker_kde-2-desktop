@@ -5,7 +5,7 @@ cat <<EOF >~/Desktop/walker.desktop
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Walker
+Name=Walker-KDE
 Comment=Launch Walker
 Exec=kde-menu
 Icon=$HOME/.local/share/applications/icons/walker.png

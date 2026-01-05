@@ -1,19 +1,13 @@
 #!/bin/bash
 
-default_browser=$(xdg-settings get default-web-browser)
-
-browser_exec=$(sed -n 's/^Exec=\([^ ]*\).*/\1/p' {~/.local,~/.nix-profile,/usr}/share/applications/"$default_browser" 2>/dev/null | head -1)
-
 cat <<EOF >~/.local/share/applications/discord.desktop
 [Desktop Entry]
 Version=1.0
 Type=Application
 Name=Discord (Web)
 Comment=Launch Discord
-Exec=$browser_exec --app="https://discord.com/channels/@me" --user-data-dir="$HOME/.config/discord-webapp"
+Exec=launch-webapp_kde https://discord.com/channels/@me
 Icon=$HOME/.local/share/applications/icons/Discord.png
 Terminal=false
 StartupNotify=true
 EOF
-
-chmod +x "~/.local/share/applications/discord.desktop"

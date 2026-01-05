@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo "Updating system..."
-sudo pacman -Syu --noconfirm
-
 # Pacman Stuff
 echo "Installing core dependencies..."
 sudo pacman -S --needed --noconfirm \
