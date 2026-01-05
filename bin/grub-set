@@ -1,0 +1,14 @@
+#!/bin/bash
+
+THEME_DIR="/usr/share/grub/themes"
+LINK_PATH="/usr/share/grub/themes/current_grub"
+
+selected=$(find "$THEME_DIR" -maxdepth 1 -mindepth 1 -type d -exec basename {} \; | walker --dmenu -p "Select Grub Theme")
+
+if [ -n "$selected" ]; then
+  sudo ln -nsf "$THEME_DIR/$selected" "$LINK_PATH"
+
+  sudo grub-mkconfig -o /boot/grub/grub.cfg
+  echo "You can now close the Window (CTRL + C)"
+  echo "Grub theme was switched successfuly"
+fi

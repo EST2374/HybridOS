@@ -1,15 +1,12 @@
 #!/bin/bash
 
-SDDM_THEME="/usr/share/sddm/themes"
+SDDM_DIR="/usr/share/sddm/themes"
+LINK_PATH="/usr/share/sddm/themes/current_sddm"
 
-selected=$(find "$SDDM_THEME" -maxdepth 1 -mindepth 1 -type d | sort | while read -r path; do
-  echo "$(basename "$path" | sed -E 's/(^|-)([a-z])/\1\u\2/g; s/-/ /g')"
-done | walker --dmenu -p "Select SDDM Theme")
+selected=$(find "$SDDM_DIR" -maxdepth 1 -mindepth 1 -type d -exec basename {} \; | walker --dmenu -p "Select SDDM Theme")
 
 if [ -n "$selected" ]; then
-  theme_folder=$(echo "$selected" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
-
-  echo -e "[Theme]\nCurrent=$theme_folder" | sudo tee /etc/sddm.conf.d/theme.conf >/dev/null
-
-  notify-send "SDDM" "Theme set to $selected"
+  sudo ln -nsf "$SDDM_DIR/$selected" "$LINK_PATH"
+  echo "SDDM Theme switched to $selected"
+  echo "U can close the window now (CTRL + C)"
 fi
