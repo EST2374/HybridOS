@@ -7,7 +7,7 @@
     "margin-right": 10,
     "modules-left": ["custom/arch", "custom/player"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["pulseaudio#microphone", "custom/nightmode", "network", "clock"],
+    "modules-right": ["pulseaudio#microphone", "custom/nightmode", "network", "battery", "clock"],
 
     "custom/arch": {
         "format": "",
@@ -25,10 +25,8 @@
         },
         "max-length": 35,
         "on-click": "playerctl play-pause",
-        // Lautstärke mit dem Mausrad steuern:
         "on-scroll-up": "pamixer -i 5", 
         "on-scroll-down": "pamixer -d 5",
-        // Wenn du Songs überspringen willst, leg das auf Rechtsklick/Mittelklick:
         "on-click-right": "playerctl next",
         "on-click-middle": "playerctl previous"
     },
@@ -47,7 +45,7 @@
     "pulseaudio#microphone": {
         "format": "{format_source}",
         "format-source": "",
-        "format-source-muted": "", // Ein durchgestrichenes Mikrofon
+        "format-source-muted": "",
         "on-click": "pamixer --default-source -t",
         "tooltip": true,
         "tooltip-format-source": "Mikrofon aktiv",
@@ -65,6 +63,23 @@
         "format-ethernet": " {bandwidthDownBytes}",
         "interval": 2,
         "tooltip-format": "{essid}"
+    },
+
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-plugged": "",
+        "format-icons": {
+          "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+          "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+        },
+        "format-full": "󰂅",
+        "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+        "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+        "interval": 5,
+        "states": {
+          "warning": 20,
+          "critical": 15
+        }
     },
 
     "clock": {

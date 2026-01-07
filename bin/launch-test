@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SCRIPT_DIR="$HOME/.local/share/HybridOS/bin"
+cmd="$*"
+
+exec setsid uwsm-app -- hyprctl dispatch exec "[float; size 900 600; center] alacritty --title 'launch-tui' -e bash -c '$cmd'"

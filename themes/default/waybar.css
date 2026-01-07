@@ -1,0 +1,12 @@
+@define-color waybar #0f0f0f;
+@define-color background #ffffff;
+@define-color text #ffffff;
+@define-color battery_color #a6e3a1;
+@define-color battery_color_critical #f38ba8;
+@define-color arch #1793d1;
+@define-color clock #f2ceb6;
+@define-color network #81c8be;
+@define-color player #89b4fa;
+@define-color microphone #f38ba8;
+@define-color nightmode #f38ba8;
+@define-color workspace #db6118;

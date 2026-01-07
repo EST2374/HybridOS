@@ -79,18 +79,13 @@ show_screenshot_menu() {
 # TODO Styles
 # Theme Show imporve
 show_style_menu() {
-  case $(menu "STYLE SETTINGS" "󰸌 Theme\n󰃉 Wallpaper\n󰍛 Fonts\n󰔎 LoginScreen\n☯ Bootloader") in
-  *Theme*) show_theme_menu ;;
+  case $(menu "STYLE SETTINGS" "󰃉 Wallpaper\n󰍛 Fonts\n󰔎 LoginScreen\n☯ Bootloader") in
   *Wallpaper*) wallpaper-set ;;
   *Fonts*) ;;
   *LoginScreen*) present_terminal sddm-set ;;
   *Bootloader*) present_terminal grub-set ;;
   *) show_main_menu ;;
   esac
-}
-
-show_theme_menu() {
-  launch-walker -m menus:themes --width 800 --minheight 400
 }
 
 show_setup_menu() {
@@ -115,7 +110,9 @@ show_setup_power_menu() {
 }
 
 show_install_menu() {
-  case $(menu "INSTALL MENU" "☯ Browser\n♛ Gaming\n☯ Windows\n☯ OBS\n☯ DaVinciResolve\n☯ LocalSend\n☯ Waydroid") in
+  case $(menu "INSTALL MENU" "☯ Package\n☯ AUR\n☯ Browser\n♛ Gaming\n☯ Windows\n☯ OBS\n☯ DaVinciResolve\n☯ LocalSend\n☯ Waydroid") in
+  *Package*) launch-test pkg-install ;;
+  *AUR*) launch-test yay-install ;;
   *Browser*) show_browser_install_menu ;;
   *Gaming*) show_gaming_install_menu ;;
   *Windows*) show_windows_install_menu ;;
@@ -128,7 +125,8 @@ show_install_menu() {
 }
 
 show_remove_menu() {
-  case $(menu "REMOVE MENU" "☯ Browser\n♛ Gaming\n☯ Windows\n☯ OBS\n☯ DaVinciResolve\n☯ LocalSend\n☯ Waydroid") in
+  case $(menu "REMOVE MENU" "☯ Package\n☯ Browser\n♛ Gaming\n☯ Windows\n☯ OBS\n☯ DaVinciResolve\n☯ LocalSend\n☯ Waydroid") in
+  *Package*) launch-test pkg-remove ;;
   *Browser*) show_browser_remove_menu ;;
   *Gaming*) show_gaming_remove_menu ;;
   *Windows*) present_terminal winboat-remove ;;

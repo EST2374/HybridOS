@@ -1,0 +1,13 @@
+#!/bin/bash
+# bin/wallpaper-set-direct
+
+if [[ -z "$1" ]]; then
+    echo "Usage: wallpaper-set-direct <path>"
+    exit 1
+fi
+
+full_path="$1"
+CURRENT_BACKGROUND_LINK="$HOME/.config/hybridOS/current/background"
+
+ln -nsf "$full_path" "$CURRENT_BACKGROUND_LINK"
+swww img "$full_path" --transition-type wipe --transition-angle 30 --transition-duration 1.5
