@@ -10,3 +10,9 @@
 10. Test on real System
 11. sddm wallpaper set fix (test in kde missing)
 12. Preview wallpaper intergration
+13. Add Battery to waybar (mainly for laptop user)
+14. Fix Mut button waybar (laptop)
+15.1 Installer upgrade with limine, skip if something fails (like when some1 choose limine instead of grub and script throws an error)
+15.2 Add some pkgs and systemctls (see in bash_history)
+16. Add yay and pacman search in walker
+17. Logout fix (Laptop)
