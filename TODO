@@ -5,14 +5,12 @@
 5. Improvment Themes and custom stuff (For later)
 6. ADD Hardware update and other cool Omarchy Stuff 
 7. Easy install of new waybar / walker / (maybe thems) 
-8. Fix KDE walker/elephant not launch bug  
 9. More softlinks (waybar and others...)
-10. Test on real System
-11. sddm wallpaper set fix (test in kde missing)
-12. Preview wallpaper intergration
-13. Add Battery to waybar (mainly for laptop user)
-14. Fix Mut button waybar (laptop)
-15.1 Installer upgrade with limine, skip if something fails (like when some1 choose limine instead of grub and script throws an error)
-15.2 Add some pkgs and systemctls (see in bash_history)
-16. Add yay and pacman search in walker
-17. Logout fix (Laptop)
+10. sddm wallpaper set fix (test in kde missing)
+11. Preview wallpaper intergration
+12. Fix Mut button waybar (laptop)
+13.1 Installer upgrade with limine, skip if something fails (like when some1 choose limine instead of grub and script throws an error)
+14.2 Add some pkgs and systemctls (see in bash_history)
+15. Logout fix (Laptop)
+16. Fix discord reconnet bug (make it to webapp)
+17. Split up installer and imporve it, same with hyprland and maybe bashrc
