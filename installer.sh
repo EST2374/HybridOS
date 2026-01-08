@@ -73,15 +73,14 @@ fi
 
 # AUR Stuff
 echo "Installing AUR packages..."
-yay -Sy --noconfirm \
+yay -S --noconfirm \
   walker-bin \
-  elephant-files \
-  elephant-desktopapplications nmgui-bin \
+  nmgui-bin \
   wayfreeze-git \
   hyprdvd
 
 # Enable systemctl Stuff
-systemctl enable --now NetworkManager.servic
+systemctl enable --now NetworkManager.service
 
 # Repo stuff
 SHARE_PATH="$HOME/.local/share/HybridOS"

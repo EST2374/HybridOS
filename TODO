@@ -1,0 +1,14 @@
+1. WayDroid missing some things
+2. KDE and Hyprland Keyrings syncro or so
+3. Fix Bluetooth
+4. Arch_iso things and calamares or so
+5. Improvment Themes and custom stuff (For later)
+6. ADD Hardware update and other cool Omarchy Stuff 
+7. Easy install of new waybar / walker / (maybe thems) 
+9. More softlinks (waybar and others...)
+10. sddm wallpaper set fix (test in kde missing)
+11. Preview wallpaper intergration
+13.1 Installer upgrade with limine, skip if something fails (like when some1 choose limine instead of grub and script throws an error)
+14.2 Add some pkgs and systemctls (see in bash_history)
+15. Logout fix (Laptop)
+17. Split up installer and imporve it, same with hyprland and maybe bashrc
