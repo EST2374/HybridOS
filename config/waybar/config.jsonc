@@ -48,13 +48,11 @@
         "format-source-muted": "",
         "on-click": "pamixer --default-source -t",
         "tooltip": true,
-        "tooltip-format-source": "Mikrofon aktiv",
-        "tooltip-format-source-muted": "Mikrofon STUMM"
     },
 
     "custom/nightmode": {
         "format": "󰛨",
-        "on-click": "~/.local/share/scripts/toggle_night.sh",
+        "on-click": "toggle-nightlight",
         "tooltip": false
     },
 
@@ -62,6 +60,7 @@
         "format-wifi": " {bandwidthDownBytes}",
         "format-ethernet": " {bandwidthDownBytes}",
         "interval": 2,
+        "on-click": "nmgui",
         "tooltip-format": "{essid}"
     },
 

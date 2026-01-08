@@ -9,6 +9,7 @@ sudo pacman -S --needed --noconfirm \
   hyprland \
   hypridle \
   hyprlock \
+  hyprsunset \
   zoxide \
   eza \
   fzf \
@@ -17,6 +18,7 @@ sudo pacman -S --needed --noconfirm \
   starship \
   bash-completion \
   xdg-utils \
+  libnotify \
   neovim \
   mise \
   uwsm \
@@ -32,6 +34,7 @@ sudo pacman -S --needed --noconfirm \
   base-devel \
   flatpak \
   go \
+  jq \
   swww \
   gum \
   xdg-desktop-portal-hyprland \
@@ -51,7 +54,12 @@ sudo pacman -S --needed --noconfirm \
   qt6-svg \
   qt6-virtualkeyboard \
   qt6-multimedia-ffmpeg \
-  plasma-desktop
+  plasma-desktop \
+  brightnessctl \
+  openbsd-netcat \
+  wiremix \
+  swayosd \
+  pamixer
 
 # If yay isnt installed
 if ! command -v yay &>/dev/null; then
@@ -65,12 +73,17 @@ fi
 
 # AUR Stuff
 echo "Installing AUR packages..."
-yay -S --noconfirm \
+yay -Sy --noconfirm \
   walker-bin \
-  nmgui-bin \
+  elephant-files \
+  elephant-desktopapplications nmgui-bin \
   wayfreeze-git \
   hyprdvd
 
+# Enable systemctl Stuff
+systemctl enable --now NetworkManager.servic
+
+# Repo stuff
 SHARE_PATH="$HOME/.local/share/HybridOS"
 CONFIG_PATH="$HOME/.config/hybridOS"
 SDDM_DIR="/usr/share/sddm/themes"
@@ -116,20 +129,27 @@ ln -nsf $CONFIG_PATH/current/theme/backgrounds/a-logo-with-white-text.png $CONFI
 
 # SDDM and Grub Symlinks and Themes
 # SDDM
-sudo cp -r ./sddm_themes/* $SDDM_DIR
-sudo mkdir -p /etc/sddm.conf.d
-sudo ln -nsf $SDDM_DIR/breeze /usr/share/sddm/themes/current_sddm
+if [[ -d /usr/share/sddm ]]; then
+  sudo cp -r ./sddm_themes/* $SDDM_DIR
+  sudo mkdir -p /etc/sddm.conf.d
+  sudo ln -nsf $SDDM_DIR/breeze /usr/share/sddm/themes/current_sddm
 
-echo -e "[Theme]\nCurrent=current_sddm" | sudo tee /etc/sddm.conf.d/theme.conf >/dev/null
+  echo -e "[Theme]\nCurrent=current_sddm" | sudo tee /etc/sddm.conf.d/theme.conf >/dev/null
+
+fi
 
 # GRUB
-sudo cp -r ./grub_themes/* $GRUB_DIR
-if [ -d "$GRUB_DIR/whitesur" ]; then
-  sudo ln -nsf $GRUB_DIR/whitesur $GRUB_DIR/current_grub
-  sudo sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/current_grub/theme.txt"|' /etc/default/grub
-  sudo grub-mkconfig -o /boot/grub/grub.cfg
+if [[ -d /usr/share/grub || -f /etc/default/grub ]]; then
+  sudo cp -r ./grub_themes/* $GRUB_DIR
+  if [ -d "$GRUB_DIR/whitesur" ]; then
+    sudo ln -nsf $GRUB_DIR/whitesur $GRUB_DIR/current_grub
+    sudo sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/current_grub/theme.txt"|' /etc/default/grub
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+  else
+    echo "Warning: WhiteSur GRUB theme not found in $GRUB_DIR. Skipping GRUB theme update."
+  fi
 else
-  echo "Warning: WhiteSur GRUB theme not found in $GRUB_DIR. Skipping GRUB theme update."
+  echo "You don't use the Grub bootloader (SKIP)"
 fi
 
 # Copy Logo to .config

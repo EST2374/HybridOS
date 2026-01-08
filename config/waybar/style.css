@@ -14,7 +14,8 @@ window#waybar {
 #clock,
 #battery,
 #custom-player,
-#pulseaudio.microphone {
+#pulseaudio.microphone,
+#custom-nightmode {
     background: alpha(@background, 0.1);
     margin: 4px 6px;
     padding: 2px 15px;
@@ -61,33 +62,15 @@ window#waybar {
     text-shadow: 0 0 12px alpha(@workspace, 0.8);
 }
 
+/* Right Part*/
 #pulseaudio.microphone {
-    background: rgba(243, 139, 168, 0.2); 
     color: @microphone;
-    text-shadow: 0 0 10px rgba(243, 139, 168, 0.4);
-}
-#pulseaudio.microphone.muted {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.3);
-    box-shadow: none;
 }
 
 #custom-nightmode {
-    background: rgba(243, 139, 168, 0.1);
     color: @nightmode;
-    margin: 5px 4px;
-    padding: 0 15px;
-    border-radius: 100px;
-    transition: all 0.3s ease;
 }
 
-#custom-nightmode:hover {
-    background: rgba(243, 139, 168, 0.3);
-    box-shadow: 0 0 10px rgba(243, 139, 168, 0.5);
-    color: @text;
-}
-
-/*Right Part*/
 #network {
     color: @network;
 }
@@ -104,10 +87,10 @@ window#waybar {
 
 #battery.critical {
   color: @battery_color_critical;
+  font-weight: bold;
 }
 
-#workspaces button.focused,
-#workspaces button.visible {
-    border: none;
-    box-shadow: none;
+#battery.charging {
+  color: @battery_color;
+  font-weight: bold;
 }

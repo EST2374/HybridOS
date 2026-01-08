@@ -6,7 +6,7 @@ Version=1.0
 Type=Application
 Name=Discord (Web)
 Comment=Launch Discord
-Exec=launch-webapp_kde https://discord.com/channels/@me --user-data-dir="$HOME/.config/discord-webapp/"
+Exec=launch-webapp https://discord.com/channels/@me"
 Icon=$HOME/.local/share/applications/icons/Discord.png
 Terminal=false
 StartupNotify=true
