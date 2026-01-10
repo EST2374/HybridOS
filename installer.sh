@@ -36,6 +36,7 @@ sudo pacman -S --needed --noconfirm \
   go \
   jq \
   swww \
+  swaync \
   gum \
   xdg-desktop-portal-hyprland \
   xdg-desktop-portal-gtk \
@@ -75,6 +76,7 @@ fi
 echo "Installing AUR packages..."
 yay -S --noconfirm \
   walker-bin \
+  elephant-bin \
   nmgui-bin \
   wayfreeze-git \
   hyprdvd

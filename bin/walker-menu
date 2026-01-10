@@ -22,6 +22,11 @@ present_terminal() {
   launch-floating-terminal-with-presentation $1
 }
 
+open_in_terminal() {
+  notify-send "Open $1"
+  launch-editor "$1"
+}
+
 # Only for Minecraft for now
 yay_install_and_launch() {
   present_terminal "echo 'Installing $1...'; yay -S --noconfirm $2 && setsid gtk-launch $3"
@@ -83,8 +88,16 @@ show_style_menu() {
   *Wallpaper*) wallpaper-set ;;
   *Fonts*) ;;
   *LoginScreen*) present_terminal sddm-set ;;
-  *Bootloader*) present_terminal grub-set ;;
+  *Bootloader*) show_bootloader_menu ;;
   *) show_main_menu ;;
+  esac
+}
+
+show_bootloader_menu() {
+  case $(menu "BOOTLOADER SETTINGS" "☯ Grub\n☯ Limine") in
+  *Grub*) present_terminal grub-set ;;
+  *Limine*) open_in_terminal /boot/EFI/arch-limine/limine.conf ;;
+  *) show_style_menu ;;
   esac
 }
 
