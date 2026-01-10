@@ -3,16 +3,14 @@
   background-clip: border-box;
 }
 
-/* Das Hauptfenster (Seitenleiste) */
 .control-center {
-  background: rgba(30, 30, 46, 0.95); /* Dunkles Blau/Grau */
+  background: rgba(30, 30, 46, 0.95);
   border: 2px solid #89b4fa;
   border-radius: 15px;
   padding: 10px;
   color: #cdd6f4;
 }
 
-/* Einzelne Benachrichtigungs-Karten */
 .notification {
   background: rgba(49, 50, 68, 0.8);
   border-radius: 10px;
@@ -21,19 +19,16 @@
   padding: 10px;
 }
 
-/* Titel der Benachrichtigung */
 .notification-content .summary {
   color: #89b4fa;
   font-weight: bold;
   font-size: 16px;
 }
 
-/* Text der Benachrichtigung */
 .notification-content .body {
   color: #bac2de;
 }
 
-/* Buttons in den Benachrichtigungen */
 .notification-action {
   background: #45475a;
   border: none;
@@ -46,7 +41,6 @@
   background: #585b70;
 }
 
-/* Der "Alle löschen" Button */
 .widget-title button {
   background: #f38ba8;
   color: #1e1e2e;
@@ -54,7 +48,6 @@
   padding: 5px 10px;
 }
 
-/* Do Not Disturb Schalter */
 .widget-dnd switch {
   background: #45475a;
   border-radius: 15px;

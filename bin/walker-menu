@@ -177,10 +177,11 @@ show_browser_remove_menu() {
 }
 
 show_gaming_install_menu() {
-  case $(menu "GAMING INSTALL MENU" "☯ Steam\n☯ Minecraft\n☯ Roblox\n☯ BattleNet\n☯ Tetris\n☯ Solitär") in
+  case $(menu "GAMING INSTALL MENU" "☯ Steam\n☯ Minecraft\n☯ Heroic_Game_Launcher\n☯ Roblox\n☯ BattleNet\n☯ Tetris\n☯ Solitär") in
   *Steam*) pac_add "steam" ;;
   # TODO extra Minecraft,Roblox,BattleNet script
   *Minecraft*) yay_install_and_launch "Minecraft" "minecraft-launcher" "minecraft-launcher" ;;
+  *Heroic_Game_Launcher* ) pac_add "heroic-games-launcher-bin"
   #*Roblox*) show_main_menu ;;
   #*Battle.net*) show_main_menu ;;
   *Tetris*) tetris_install && yay-rem tetris-tui-git ;;
@@ -191,9 +192,10 @@ show_gaming_install_menu() {
 
 # TODO Minecraft remover muss aber noch clearner werden
 show_gaming_remove_menu() {
-  case $(menu "GAMING REMOVE MENU" "☯ Steam\n☯ Minecraft\n☯ Roblox\n☯ BattleNet\n☯ Tetris\n☯ Solitär") in
-  *Steam*) show_main_menu ;;
+  case $(menu "GAMING REMOVE MENU" "☯ Steam\n☯ Minecraft\n☯ Heroic_Game_Launcher\n☯ Roblox\n☯ BattleNet\n☯ Tetris\n☯ Solitär") in
+  *Steam*) pac_remove "steam" ;;
   *Minecraft*) yay_remove "minecraft-launcher" ;;
+  *Heroic_Game_Launcher*) pac_remove "heroic-games-launcher-bin" ;;
   #*Roblox*) show_main_menu ;;
   #*Battle.net*) show_main_menu ;;
   *Tetris*) tetris_remove "tetris" ;;
