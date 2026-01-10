@@ -1,0 +1,65 @@
+* {
+  font-family: "Sans-Serif", "Ubuntu", "Roboto";
+  background-clip: border-box;
+}
+
+/* Das Hauptfenster (Seitenleiste) */
+.control-center {
+  background: rgba(30, 30, 46, 0.95); /* Dunkles Blau/Grau */
+  border: 2px solid #89b4fa;
+  border-radius: 15px;
+  padding: 10px;
+  color: #cdd6f4;
+}
+
+/* Einzelne Benachrichtigungs-Karten */
+.notification {
+  background: rgba(49, 50, 68, 0.8);
+  border-radius: 10px;
+  margin: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  padding: 10px;
+}
+
+/* Titel der Benachrichtigung */
+.notification-content .summary {
+  color: #89b4fa;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Text der Benachrichtigung */
+.notification-content .body {
+  color: #bac2de;
+}
+
+/* Buttons in den Benachrichtigungen */
+.notification-action {
+  background: #45475a;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin: 5px;
+}
+
+.notification-action:hover {
+  background: #585b70;
+}
+
+/* Der "Alle löschen" Button */
+.widget-title button {
+  background: #f38ba8;
+  color: #1e1e2e;
+  border-radius: 8px;
+  padding: 5px 10px;
+}
+
+/* Do Not Disturb Schalter */
+.widget-dnd switch {
+  background: #45475a;
+  border-radius: 15px;
+}
+
+.widget-dnd switch:checked {
+  background: #a6e3a1;
+}
