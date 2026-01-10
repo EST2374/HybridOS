@@ -181,7 +181,7 @@ show_gaming_install_menu() {
   *Steam*) pac_add "steam" ;;
   # TODO extra Minecraft,Roblox,BattleNet script
   *Minecraft*) yay_install_and_launch "Minecraft" "minecraft-launcher" "minecraft-launcher" ;;
-  *Heroic_Game_Launcher* ) pac_add "heroic-games-launcher-bin"
+  *Heroic_Game_Launcher*) pac_add "heroic-games-launcher-bin" ;;
   #*Roblox*) show_main_menu ;;
   #*Battle.net*) show_main_menu ;;
   *Tetris*) tetris_install && yay-rem tetris-tui-git ;;
